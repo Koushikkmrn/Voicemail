@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Voicemail Assistant</title>
+    <!-- Google Fonts: DotGothic16 for the dot-matrix look, Inter for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Material Symbols for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <header class="app-header">
+        <h1 class="logo-text">VOICEMAIL_</h1>
+        <div class="status-indicator">
+            <span class="dot" id="system-status-dot"></span>
+            <span id="system-status-text">OFFLINE</span>
+        </div>
+    </header>
+
+    <main class="app-content">
+        <!-- DASHBOARD TAB -->
+        <section id="tab-dashboard" class="tab-content active">
+            <div class="card toggle-card">
+                <h2 class="dot-text">AI ASSISTANT</h2>
+                <p>Call screening & transcription</p>
+                <label class="switch">
+                    <input type="checkbox" id="main-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-num dot-text">03</span>
+                    <span class="stat-label">NEW MSGS</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num dot-text">12</span>
+                    <span class="stat-label">BLOCKED SPAM</span>
+                </div>
+            </div>
+            
+            <div class="card recent-card">
+                <h3 class="dot-text">RECENT_CALLS</h3>
+                <div class="recent-list">
+                    <div class="recent-item">
+                        <span class="material-symbols-outlined icon-missed">call_missed</span>
+                        <div class="caller-info">
+                            <span class="caller">Unknown Number</span>
+                            <span class="time">10:42 AM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INBOX TAB -->
+        <section id="tab-inbox" class="tab-content">
+            <h2 class="section-title dot-text">INBOX_</h2>
+            
+            <div class="voicemail-list">
+                <!-- Voicemail Item 1 -->
+                <div class="vm-card unread">
+                    <div class="vm-header">
+                        <div class="vm-caller">
+                            <span class="material-symbols-outlined">person</span>
+                            <strong>+91 98765 43210</strong>
+                        </div>
+                        <span class="vm-time">2 mins ago</span>
+                    </div>
+                    <div class="vm-player">
+                        <button class="btn-icon play-btn"><span class="material-symbols-outlined">play_arrow</span></button>
+                        <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
+                        <span class="duration">0:14</span>
+                    </div>
+                    <div class="vm-transcript">
+                        <p>"Hey, it's Rahul. I'm waiting downstairs. Call me back when you get this."</p>
+                    </div>
+                </div>
+
+                <!-- Voicemail Item 2 -->
+                <div class="vm-card">
+                    <div class="vm-header">
+                        <div class="vm-caller">
+                            <span class="material-symbols-outlined">business</span>
+                            <strong>Delivery Agent</strong>
+                        </div>
+                        <span class="vm-time">Yesterday</span>
+                    </div>
+                    <div class="vm-player">
+                        <button class="btn-icon play-btn"><span class="material-symbols-outlined">play_arrow</span></button>
+                        <div class="progress-bar"><div class="progress" style="width: 100%"></div></div>
+                        <span class="duration">0:08</span>
+                    </div>
+                    <div class="vm-transcript">
+                        <p>"Sir your package has been delivered to the security guard."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GREETING STUDIO TAB -->
+        <section id="tab-studio" class="tab-content">
+            <h2 class="section-title dot-text">STUDIO_</h2>
+            <p class="subtitle">Record your personal greeting</p>
+            
+            <div class="studio-card">
+                <div class="visualizer" id="audio-visualizer">
+                    <!-- Bars generated by JS -->
+                </div>
+                
+                <div class="recording-time dot-text" id="record-time">00:00</div>
+                
+                <div class="studio-controls">
+                    <button class="btn-icon" id="btn-delete" disabled><span class="material-symbols-outlined">delete</span></button>
+                    <button class="btn-record" id="btn-record">
+                        <div class="record-inner"></div>
+                    </button>
+                    <button class="btn-icon" id="btn-save" disabled><span class="material-symbols-outlined">save</span></button>
+                </div>
+                <div class="status-msg" id="studio-status">Ready to record</div>
+            </div>
+            
+            <div class="active-greeting">
+                <h3 class="dot-text">ACTIVE_GREETING</h3>
+                <div class="vm-player card">
+                    <button class="btn-icon play-btn"><span class="material-symbols-outlined">play_arrow</span></button>
+                    <span class="greeting-name">Default AI Voice</span>
+                    <span class="duration">0:05</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" data-target="tab-dashboard">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-target="tab-inbox">
+            <span class="material-symbols-outlined">inbox</span>
+            <span>Inbox</span>
+        </a>
+        <a href="#" class="nav-item" data-target="tab-studio">
+            <span class="material-symbols-outlined">mic</span>
+            <span>Studio</span>
+        </a>
+    </nav>
+
+    <script src="app.js"></script>
+</body>
+</html>
